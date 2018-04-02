@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import asyncComponent from '@/components/common/asyncComponent';
 
 import home from "@/pages/home/home";
@@ -10,14 +10,14 @@ const helpcenter = asyncComponent(() => import("@/pages/helpcenter/helpcenter"))
 export default class RouteConfig extends Component {
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Switch>
           <Route path="/" exact component={home} />
           <Route path="/helpcenter" component={helpcenter} />
           <Route path="/list" component={list} />
           <Redirect to="/" />
         </Switch>
-      </HashRouter>
+      </BrowserRouter>
     )
   }
 }

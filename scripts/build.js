@@ -12,8 +12,8 @@
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 process.env.STATIC_ENV = 'production';
-if(process.env.STATIC_ENV === 'production'){
-  process.env.PUBLIC_URL = '/pxq';
+if (process.env.STATIC_ENV === 'production') {
+  process.env.PUBLIC_URL = '/react-new';
 }
 
 // Makes the script crash on unhandled rejections instead of silently
@@ -65,51 +65,51 @@ measureFileSizesBeforeBuild(paths.appBuild)
     return build(previousFileSizes);
   })
   .then(
-    ({ stats, previousFileSizes, warnings }) => {
-      if (warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(warnings.join('\n\n'));
-        console.log(
-          '\nSearch for the ' +
-            chalk.underline(chalk.yellow('keywords')) +
-            ' to learn more about each warning.'
-        );
-        console.log(
-          'To ignore, add ' +
-            chalk.cyan('// eslint-disable-next-line') +
-            ' to the line before.\n'
-        );
-      } else {
-        console.log(chalk.green('Compiled successfully.\n'));
-      }
-
-      console.log('File sizes after gzip:\n');
-      printFileSizesAfterBuild(
-        stats,
-        previousFileSizes,
-        paths.appBuild,
-        WARN_AFTER_BUNDLE_GZIP_SIZE,
-        WARN_AFTER_CHUNK_GZIP_SIZE
+  ({ stats, previousFileSizes, warnings }) => {
+    if (warnings.length) {
+      console.log(chalk.yellow('Compiled with warnings.\n'));
+      console.log(warnings.join('\n\n'));
+      console.log(
+        '\nSearch for the ' +
+        chalk.underline(chalk.yellow('keywords')) +
+        ' to learn more about each warning.'
       );
-      console.log();
-
-      const appPackage = require(paths.appPackageJson);
-      const publicUrl = paths.publicUrl;
-      const publicPath = config.output.publicPath;
-      const buildFolder = path.relative(process.cwd(), paths.appBuild);
-      printHostingInstructions(
-        appPackage,
-        publicUrl,
-        publicPath,
-        buildFolder,
-        useYarn
+      console.log(
+        'To ignore, add ' +
+        chalk.cyan('// eslint-disable-next-line') +
+        ' to the line before.\n'
       );
-    },
-    err => {
-      console.log(chalk.red('Failed to compile.\n'));
-      printBuildError(err);
-      process.exit(1);
+    } else {
+      console.log(chalk.green('Compiled successfully.\n'));
     }
+
+    console.log('File sizes after gzip:\n');
+    printFileSizesAfterBuild(
+      stats,
+      previousFileSizes,
+      paths.appBuild,
+      WARN_AFTER_BUNDLE_GZIP_SIZE,
+      WARN_AFTER_CHUNK_GZIP_SIZE
+    );
+    console.log();
+
+    const appPackage = require(paths.appPackageJson);
+    const publicUrl = paths.publicUrl;
+    const publicPath = config.output.publicPath;
+    const buildFolder = path.relative(process.cwd(), paths.appBuild);
+    printHostingInstructions(
+      appPackage,
+      publicUrl,
+      publicPath,
+      buildFolder,
+      useYarn
+    );
+  },
+  err => {
+    console.log(chalk.red('Failed to compile.\n'));
+    printBuildError(err);
+    process.exit(1);
+  }
   );
 
 // Create the production build and print the deployment instructions.
@@ -140,7 +140,7 @@ function build(previousFileSizes) {
         console.log(
           chalk.yellow(
             '\nTreating warnings as errors because process.env.CI = true.\n' +
-              'Most CI servers set it automatically.\n'
+            'Most CI servers set it automatically.\n'
           )
         );
         return reject(new Error(messages.warnings.join('\n\n')));

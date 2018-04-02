@@ -1,4 +1,4 @@
-import API from '@/api/api';
+import http from '@/api/fetch';
 import { GET_NOTICELIST_LOADING, GET_DETAIL_LOADING_SUCCESS, GET_NOTICELIST_LOADING_SUCCESS, GET_NOTICELIST_LOADING_FAILD } from './actionText'
 
 export function getListLoading(loading) {
@@ -31,35 +31,40 @@ export function getListFaild(error) {
 
 //获取列表
 export function getNoticeList() {
-  return async dispatch => {
+  return function (dispatch) {
     dispatch(getListLoading(true));
-    try {
-      let result = await API.getPoetyList();
-      dispatch(getListLoading(false));
-      dispatch(getListSuccess(result));
-    } catch (err) {
-      dispatch(getListLoading(false));
-      dispatch(getListFaild(err));
-    }
+    http('/poetyList', 'GET')
+      .then(res => {
+        //请求成功
+        dispatch(getListLoading(false));
+        dispatch(getListSuccess(res));
+      }).catch(err => {
+        //请求失败
+        dispatch(getListLoading(false));
+        dispatch(getListFaild(err));
+      })
   }
 }
 
 //获取详情
-// export function getNoticeDetail(id) {
-//   return function (dispatch) {
-//     dispatch(getListLoading(true));
-//     fetchRequestGateway('/poetyContent?id=' + id, 'Get')
-//       .then(res => {
-//         //请求成功
-//         dispatch(getListLoading(false));
-//         dispatch(getDetailSuccess(res));
-//       }).catch(err => {
-//         //请求失败
-//         dispatch(getListLoading(false));
-//         dispatch(getListFaild(err));
-//       })
-//   }
-// }
+export function getNoticeDetail(id) {
+  return function (dispatch) {
+    dispatch(getListLoading(true));
+    http('/poetyContent', {
+      method: 'GET',
+      id: id
+    })
+      .then(res => {
+        //请求成功
+        dispatch(getListLoading(false));
+        dispatch(getDetailSuccess(res));
+      }).catch(err => {
+        //请求失败
+        dispatch(getListLoading(false));
+        dispatch(getListFaild(err));
+      })
+  }
+}
 
 
 
