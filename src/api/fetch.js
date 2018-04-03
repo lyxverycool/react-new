@@ -14,14 +14,27 @@ function http(url, method, params = '') {
     "Content-Type": "application/json;charset=UTF-8",
     "accesstoken": token  //用户登陆后返回的token，某些涉及用户数据的接口需要在header中加上token
   };
+  let config;
+  const config1 = {
+    method: method,
+    headers: header,
+    credentials: 'include'
+  }
+  const config2 = {
+    method: method,
+    headers: header,
+    credentials: 'include',
+    body: JSON.stringify(params)
+  }
+  if (method === "GET") {
+    config = config1;
+  } else {
+    config = config2
+  }
   console.log('request url:', url, params);  //打印请求参数
   return new Promise(function (resolve, reject) {
-    fetch(common_url + url, {
-      method: method,
-      headers: header,
-      credentials: 'include',
-      body: JSON.stringify(params) || ""   //body参数，通常需要转换成字符串后服务器才能解析
-    }).then((response) => {
+    fetch(common_url + url, config).then((response) => {
+      console.log(response)
       if (response.ok) {
         return response.json();
       } else {

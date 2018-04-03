@@ -50,10 +50,7 @@ export function getNoticeList() {
 export function getNoticeDetail(id) {
   return function (dispatch) {
     dispatch(getListLoading(true));
-    http('/poetyContent', {
-      method: 'GET',
-      id: id
-    })
+    http('/poetyContent', 'POST',{id:id})
       .then(res => {
         //请求成功
         dispatch(getListLoading(false));

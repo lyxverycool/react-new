@@ -1,28 +1,22 @@
-import React, { Component, PropTypes } from "react";
-import { Link } from 'react-router';
-import { connect } from 'react-redux'
-import Loading from '../common/loading';
-import Nodata from '../common/nodata';
-import { getNoticeDetail } from '../../redux/action';
+import React, { Component } from "react";
+import { connect } from 'react-redux';
+import Loading from '@/components/common/loading'
+import { getNoticeDetail } from '@/redux/action';
 
 class ListDetail extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentWillMount() {
-    let id=this.props.location.query.id;
+    let id = this.props.match.params.listId;
     this.props.getNoticeDetail(id)
   }
-   componentWillUnmount() {
-     //销毁组件时设置content为空
-    this.props.listDetail.content={};
+  componentWillUnmount() {
+    //销毁组件时设置content为空
+    this.props.listDetail.content = {};
   }
   render() {
-    const { listDetail, getNoticeDetail } = this.props;
+    const listDetail = this.props.listDetail;
     return (
       <div className="list">
-       <Loading isloading={listDetail.loading} />
-       <Nodata nodata={listDetail.nodata} />
+        <Loading isloading={listDetail.loading} />
         {listDetail.content.content}
       </div>
     )

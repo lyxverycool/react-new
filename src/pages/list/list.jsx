@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import { is, fromJS } from 'immutable';
 import { connect } from 'react-redux'
 import Loading from '@/components/common/loading'
 import { getNoticeList } from '@/redux/action';
 
 class List extends Component {
+  shouldComponentUpdate(nextProps, nextState){
+    return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
+  }
   componentWillMount() {
     this.props.getNoticeList()
   }
@@ -18,7 +22,7 @@ class List extends Component {
           {lists.data.map((list, index) => {
             return (
               <div key={index}>
-                <Link className="well well-sm" to={{ pathname: '/listDetail', query: { id: list._id } }}>
+                <Link className="well well-sm" to={`/list/${list._id}`}>
                   {list.title}
                 </Link>
               </div>
