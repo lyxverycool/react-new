@@ -14,22 +14,13 @@ function http(url, method, params = '') {
     "Content-Type": "application/json;charset=UTF-8",
     "accesstoken": token  //用户登陆后返回的token，某些涉及用户数据的接口需要在header中加上token
   };
-  let config;
-  const config1 = {
+  let config = {
     method: method,
     headers: header,
     credentials: 'include'
   }
-  const config2 = {
-    method: method,
-    headers: header,
-    credentials: 'include',
-    body: JSON.stringify(params)
-  }
-  if (method === "GET") {
-    config = config1;
-  } else {
-    config = config2
+  if (params) {
+    config = Object.assign({ body: JSON.stringify(params) }, config)
   }
   console.log('request url:', url, params);  //打印请求参数
   return new Promise(function (resolve, reject) {

@@ -6,7 +6,7 @@ import Loading from '@/components/common/loading'
 import { getNoticeList } from '@/redux/action';
 
 class List extends Component {
-  shouldComponentUpdate(nextProps, nextState){
+  shouldComponentUpdate(nextProps, nextState) {
     return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
   }
   componentWillMount() {

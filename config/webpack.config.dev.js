@@ -168,7 +168,10 @@ module.exports = {
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
+            include: [
+              paths.appSrc,
+              '/node_modules/antd/dist/'   //增加此项
+            ],
             use: [
               {
                 loader: require.resolve('babel-loader'),
@@ -210,6 +213,10 @@ module.exports = {
           // in development "style" loader enables hot editing of CSS.
           {
             test: /\.(css|less)$/,
+            include: [
+              paths.appSrc,
+              '/node_modules/antd/dist/'   //增加此项
+            ],
             use: [
               require.resolve('style-loader'),
               {
@@ -240,7 +247,10 @@ module.exports = {
                 },
               },
               {
-                loader: require.resolve('less-loader')
+                loader: require.resolve('less-loader'),
+                options: {
+                  "modifyVars": { "@primary-color": "#1DA57A" }
+                }
               },
             ],
           },

@@ -7,7 +7,7 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import store from '@/redux/store';
 import './utils/setRem';
-import './style/normal.css';
+import './style/normal.less';
 
 FastClick.attach(document.body);
 
