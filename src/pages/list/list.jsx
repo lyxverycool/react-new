@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { is, fromJS } from 'immutable';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import Loading from '@/components/common/loading'
 import { getNoticeList } from '@/redux/action';
+
 
 class List extends Component {
   shouldComponentUpdate(nextProps, nextState) {
