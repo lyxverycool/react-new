@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Card } from 'antd';
+import 'antd/lib/card/style';
 import { connect } from 'react-redux';
 import Loading from '@/components/common/loading'
 import { getNoticeDetail } from '@/redux/action';
@@ -17,7 +19,9 @@ class ListDetail extends Component {
     return (
       <div className="list">
         <Loading isloading={listDetail.loading} />
-        {listDetail.content.content}
+        <Card title={listDetail.content.title} bordered={false} style={{ width: 300 }}>
+          {listDetail.content.content}
+        </Card>
       </div>
     )
   }

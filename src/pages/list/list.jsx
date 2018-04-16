@@ -23,7 +23,7 @@ class List extends Component {
           {lists.data.map((list, index) => {
             return (
               <div key={index}>
-                <Link className="well well-sm" to={`/list/${list._id}`}>
+                <Link to={`/list/${list._id}`}>
                   {list.title}
                 </Link>
               </div>

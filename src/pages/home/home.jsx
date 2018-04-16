@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import Layout from 'antd/lib/layout';
+import 'antd/lib/layout/style';
 import './home.less';
 
 class Home extends Component {
@@ -7,14 +8,15 @@ class Home extends Component {
     const { Header, Footer, Sider, Content } = Layout;
     return (
       <main className="home-container">
-       <Layout>
-        <Sider>Sider</Sider>
         <Layout>
-          <Header>Header</Header>
-          <Content>Content</Content>
-          <Footer>Footer</Footer>
+          <Layout>
+            <Header>Header</Header>
+            <Content>Content</Content>
+            <Footer>Footer</Footer>
+          </Layout>
+          <Sider>
+          </Sider>
         </Layout>
-      </Layout>
       </main>
     );
   }
