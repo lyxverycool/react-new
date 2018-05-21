@@ -22,7 +22,7 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const px2rem = require('postcss-px2rem');
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -56,7 +56,7 @@ const cssFilename = 'static/css/[name].[contenthash:8].css';
 // To have this structure working with relative paths, we have to use custom options.
 const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
-    { publicPath: Array(cssFilename.split('/').length).join('../') }
+  { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {};
 
 // This is the production configuration.
@@ -200,7 +200,7 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test:/\.(css|less)$/,
+            test: /\.(css|less)$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -214,27 +214,27 @@ module.exports = {
                         sourceMap: shouldUseSourceMap,
                       },
                     },
-                    {
-                      loader: require.resolve('postcss-loader'),
-                      options: {
-                        // Necessary for external CSS imports to work
-                        // https://github.com/facebookincubator/create-react-app/issues/2677
-                        ident: 'postcss',
-                        plugins: () => [
-                          require('postcss-flexbugs-fixes'),
-                          autoprefixer({
-                            browsers: [
-                              '>1%',
-                              'last 4 versions',
-                              'Firefox ESR',
-                              'not ie < 9', // React doesn't support IE8 anyway
-                            ],
-                            flexbox: 'no-2009',
-                          }),
-                          px2rem({remUnit: 75})
-                        ],
-                      },
-                    },
+                    // {
+                    //   loader: require.resolve('postcss-loader'),
+                    //   options: {
+                    //     // Necessary for external CSS imports to work
+                    //     // https://github.com/facebookincubator/create-react-app/issues/2677
+                    //     ident: 'postcss',
+                    //     plugins: () => [
+                    //       require('postcss-flexbugs-fixes'),
+                    //       autoprefixer({
+                    //         browsers: [
+                    //           '>1%',
+                    //           'last 4 versions',
+                    //           'Firefox ESR',
+                    //           'not ie < 9', // React doesn't support IE8 anyway
+                    //         ],
+                    //         flexbox: 'no-2009',
+                    //       }),
+                    //       px2rem({remUnit: 75})
+                    //     ],
+                    //   },
+                    // },
                     {
                       loader: require.resolve('less-loader'),
                       options: {
@@ -312,7 +312,7 @@ module.exports = {
       },
       mangle: {
         safari10: true,
-      },        
+      },
       output: {
         comments: false,
         // Turned on because emoji and regex is not minified properly using default

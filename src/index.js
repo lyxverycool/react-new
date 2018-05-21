@@ -13,7 +13,7 @@ FastClick.attach(document.body);
 
 // 监听state变化
 store.subscribe(function () {
-  console.log(store.getState());
+  //console.log(store.getState());
 });
 
 const render = Component => {

@@ -25,7 +25,6 @@ function http(url, method, params = '') {
   console.log('request url:', url, params);  //打印请求参数
   return new Promise(function (resolve, reject) {
     fetch(common_url + url, config).then((response) => {
-      console.log(response)
       if (response.ok) {
         return response.json();
       } else {
