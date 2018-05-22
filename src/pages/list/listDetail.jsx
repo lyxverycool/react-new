@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Card } from 'antd';
-// import 'antd/lib/card/style';
 import { connect } from 'react-redux';
 import timetrans from "@/utils/formatDate";
 import Loading from '@/components/common/loading'
@@ -20,10 +18,11 @@ class ListDetail extends Component {
     return (
       <div className="list">
         <Loading isloading={listDetail.loading} />
-        <Card title={listDetail.content.title} bordered={false} style={{ width: "100%" }}>
-          {listDetail.content.content}<br />
+        <div>
+         {listDetail.content.title} 
+          {listDetail.content.content}
           {timetrans(listDetail.content.createTime).getYearMonthDay()}
-        </Card>
+         </div> 
       </div>
     )
   }
